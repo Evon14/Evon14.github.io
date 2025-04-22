@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>禁黃網頁</title>
+</head>
+<body>
+    <h1>禁黃網頁</h1>
+    <p>你最好別打有關<span style="color: orange">"黃色"</span>的東西!!!</p>
+    <input type="text" id="todoInput">
+    <button id="addButton">新增</button>
+    <ul id="todoList"></ul>
+
+    <script type="text/javascript">
+        document.getElementById("addButton").addEventListener("click", OnBtnClick);
+
+        function OnBtnClick() {
+            var todo = document.getElementById("todoInput").value;
+
+        document.getElementById("todoInput").value ="";
+
+            todo = 處理敏感文字(todo);
+
+          var li =document.createElement("li");
+          li.textContent =todo;
+          const deleteButton =document.createElement("button");
+          deleteButton.textContent="刪除";
+          deleteButton.onclick=function (){
+          li.remove();
+          }
+          li.appendChild(deleteButton);
+          document.getElementById("todoList").appendChild(li);
+        }
+
+        function 處理敏感文字(msg) {
+
+            if (msg.includes("黃色")) {
+                msg = msg.replace("黃色", "不可以澀澀!!!");
+            }
+            if (msg.includes("18+")) {
+                msg = msg.replace("18+", "不可以澀澀!!!");
+            }
+            if (msg.includes("R18+")) {
+                msg = msg.replace("R18+", "不可以澀澀!!!");
+            }
+            if (msg.includes("色情")) {
+                msg = msg.replace("色情", "不可以澀澀!!!");
+            }
+
+            return msg;
+
+        }
+    </script>
+
+</body>
+</html>
